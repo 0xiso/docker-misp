@@ -82,21 +82,30 @@ set_config "MISP.redis_port" "$REDIS_PORT"
 if [ "$MISP_ENRICHMENT_ENABLE" ]; then
     set_config "Plugin.Enrichment_services_enable" true
     set_config "Plugin.Enrichment_hover_enable" true
+    set_config "Plugin.Enrichment_timeout" 300
+    set_config "Plugin.Enrichment_hover_timeout" 150
+    set_config "Plugin.Enrichment_cve_enabled" true
+    set_config "Plugin.Enrichment_dns_enabled" true
+    set_config "Plugin.Enrichment_services_url" "$MISP_MODULES_HOST"
+    set_config "Plugin.Enrichment_services_port" "$MISP_MODULES_PORT"
 fi
-set_config "Plugin.Enrichment_services_url" "$MISP_MODULES_HOST"
-set_config "Plugin.Enrichment_services_port" "$MISP_MODULES_PORT"
 
 if [ "$MISP_IMPORT_ENABLE" ]; then
     set_config "Plugin.Import_services_enable" true
+    set_config "Plugin.Import_timeout" 300
+    set_config "Plugin.Import_ocr_enabled" true
+    set_config "Plugin.Import_csvimport_enabled" true
+    set_config "Plugin.Import_services_url" "$MISP_MODULES_HOST"
+    set_config "Plugin.Import_services_port" "$MISP_MODULES_PORT"
 fi
-set_config "Plugin.Import_services_url" "$MISP_MODULES_HOST"
-set_config "Plugin.Import_services_port" "$MISP_MODULES_PORT"
 
 if [ "$MISP_EXPORT_ENABLE" ]; then
     set_config "Plugin.Export_services_enable" true
+    set_config "Plugin.Export_timeout" 300
+    set_config "Plugin.Export_pdfexport_enabled" true
+    set_config "Plugin.Export_services_url" "$MISP_MODULES_HOST"
+    set_config "Plugin.Export_services_port" "$MISP_MODULES_PORT"
 fi
-set_config "Plugin.Export_services_url" "$MISP_MODULES_HOST"
-set_config "Plugin.Export_services_port" "$MISP_MODULES_PORT"
 
 if [ "$MISP_ZEROMQ_ENABLE" ]; then
     set_config "Plugin.ZeroMQ_enable" true
@@ -112,11 +121,4 @@ fi
 set_config "Plugin.ZeroMQ_redis_host" "$REDIS_HOST"
 set_config "Plugin.ZeroMQ_redis_port" "$REDIS_PORT"
 
-# AUTH_KEY=$(mysql -u "$MYSQL_DB_USER" -p"$MYSQL_DB_PASSWORD" -h "$MYSQL_DB_HOST" -P "$MYSQL_DB_PORT" misp -e "SELECT authkey FROM users;" | tail -1)
-# curl --header "Authorization: $AUTH_KEY" --header "Accept: application/json" --header "Content-Type: application/json" -k -X POST http://127.0.0.1/galaxies/update
-# curl --header "Authorization: $AUTH_KEY" --header "Accept: application/json" --header "Content-Type: application/json" -k -X POST http://127.0.0.1/taxonomies/update
-# curl --header "Authorization: $AUTH_KEY" --header "Accept: application/json" --header "Content-Type: application/json" -k -X POST http://127.0.0.1/warninglists/update
-# curl --header "Authorization: $AUTH_KEY" --header "Accept: application/json" --header "Content-Type: application/json" -k -X POST http://127.0.0.1/noticelists/update
-# curl --header "Authorization: $AUTH_KEY" --header "Accept: application/json" --header "Content-Type: application/json" -k -X POST http://127.0.0.1/objectTemplates/update
-
-exec /usr/bin/supervisord -c /etc/supervisor/supervisord.conf --nodaemon
+exec /usr/local/bin/circusd /circus.ini

@@ -10,7 +10,8 @@ services:
     image: redis:alpine
 
   misp:
-    image: 0xiso/misp
+    build: .
+    # image: 0xiso/misp
     ports:
       - "8080:80" # MISP Web interface
       - "50000:50000" # MISP ZMQ
@@ -21,7 +22,7 @@ services:
       MYSQL_DB_PASSWORD: password
       REDIS_HOST: redis
       REDIS_PORT: 6379
-      # MISP_BASEURL : http://127.0.0.1/
+      MISP_BASEURL : ""
       MISP_MODULES_HOST: misp-modules
       MISP_LIVE: 1
       MISP_DISABLE_EMAILING: 1
@@ -31,4 +32,5 @@ services:
       MISP_ZEROMQ_ENABLE: 1
 
   misp-modules:
-    image: 0xiso/misp-modules
+  #   image: 0xiso/misp-modules
+    build: ./misp-modules/
