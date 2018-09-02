@@ -76,6 +76,11 @@ if [ "$MISP_DISABLE_EMAILING" ]; then
     set_config "MISP.disable_emailing" true
 fi
 
+if [ "$MISP_ATTACHMENTS_DIR" ]; then
+    chown -R www-data: "$MISP_ATTACHMENTS_DIR"
+    set_config "MISP.attachments_dir" "$MISP_ATTACHMENTS_DIR"
+fi
+
 set_config "MISP.redis_host" "$REDIS_HOST"
 set_config "MISP.redis_port" "$REDIS_PORT"
 

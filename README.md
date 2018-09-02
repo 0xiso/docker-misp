@@ -49,20 +49,21 @@ $ docker-compose up -d
 
 The following environment variables are honored for configuring your MISP instance:
 
-* `MYSQL_DB_HOST` - defaults to "mysql"
-* `MYSQL_DB_PORT` - defaults to "3306"
-* `MYSQL_DB_USER` - defaults to "root"
-* `MYSQL_DB_PASSWORD` - defaults to "password"
-* `REDIS_HOST` - defaults to "redis"
-* `REDIS_PORT` - defaults to "6379"
-* `MISP_BASEURL` - default to empty, non-empty value will set MISP.baseurl to specified value
-* `MISP_MODULES_HOST` - defaults to "http://misp-modules"
-* `MISP_MODULES_PORT` - defaults to "6666"
-* `MISP_LIVE` - defaults to false, non-empty value will set MISP.live to true
-* `MISP_DISABLE_EMAILING` - defaults to disabled, non-empty value will set MISP.disable_emailing to true
-* `MISP_ENRICHMENT_ENABLE` - defaults to disabled, non-empty value will set Plugin.Enrichment_services_enable and Plugin.Enrichment_hover_enable to true
-* `MISP_IMPORT_ENABLE` - defaults to disabled, non-empty value will set Plugin.Import_services_enable to true
-* `MISP_EXPORT_ENABLE` - defaults to disabled, non-empty value will set Plugin.Export_services_enable to true
-* `MISP_ZEROMQ_ENABLE` - defaults to disabled, non-empty value will set Plugin.ZeroMQ_enable to true
+* `MYSQL_DB_HOST` - Defaults to "mysql"
+* `MYSQL_DB_PORT` - Defaults to "3306"
+* `MYSQL_DB_USER` - Defaults to "root"
+* `MYSQL_DB_PASSWORD` - Defaults to "password"
+* `REDIS_HOST` - Defaults to "redis"
+* `REDIS_PORT` - Defaults to "6379"
+* `MISP_BASEURL` - Defaults to empty, non-empty value will set MISP.baseurl to specified value
+* `MISP_ATTACHMENTS_DIR` - Defaults to empty, which means MISP will use its default location. Useful for persisting data.
+* `MISP_MODULES_HOST` - Defaults to "http://misp-modules"
+* `MISP_MODULES_PORT` - Defaults to "6666"
+* `MISP_LIVE` - Defaults to false, non-empty value will set MISP.live to true
+* `MISP_DISABLE_EMAILING` - Defaults to disabled, non-empty value will set MISP.disable_emailing to true
+* `MISP_ENRICHMENT_ENABLE` - Defaults to disabled, non-empty value will set Plugin.Enrichment_services_enable and Plugin.Enrichment_hover_enable to true
+* `MISP_IMPORT_ENABLE` - Defaults to disabled, non-empty value will set Plugin.Import_services_enable to true
+* `MISP_EXPORT_ENABLE` - Defaults to disabled, non-empty value will set Plugin.Export_services_enable to true
+* `MISP_ZEROMQ_ENABLE` - Defaults to disabled, non-empty value will set Plugin.ZeroMQ_enable to true
 
 Please report any issues with the Docker image to https://github.com/0xiso/docker-misp/issues
