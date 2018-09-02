@@ -11,10 +11,12 @@ services:
 
   misp:
     build: .
-    # image: 0xiso/misp
+    image: 0xiso/misp
     ports:
       - "8080:80" # MISP Web interface
       - "50000:50000" # MISP ZMQ
+    volumes:
+      - ./misp-attachments:/misp-attachments
     environment:
       MYSQL_DB_HOST: mysql
       MYSQL_DB_PORT: 3306
@@ -30,7 +32,8 @@ services:
       MISP_IMPORT_ENABLE: 1
       MISP_EXPORT_ENABLE: 1
       MISP_ZEROMQ_ENABLE: 1
+      MISP_ATTACHMENTS_DIR: /misp-attachments
 
   misp-modules:
-  #   image: 0xiso/misp-modules
     build: ./misp-modules/
+    image: 0xiso/misp-modules
