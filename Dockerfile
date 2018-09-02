@@ -14,8 +14,8 @@ RUN set -ex \
     mariadb-client \
     python3 \
     zip \
-	&& curl https://bootstrap.pypa.io/get-pip.py -o get-pip.py \
-	&& python3 get-pip.py --no-cache-dir \
+  && curl https://bootstrap.pypa.io/get-pip.py -o get-pip.py \
+  && python3 get-pip.py --no-cache-dir \
   && rm -fr get-pip.py \
   && pip3 install \
     circus \
@@ -44,8 +44,7 @@ RUN set -ex \
   && git clone https://github.com/MISP/MISP.git /var/www/MISP \
   && cd /var/www/MISP \
   && git config core.filemode false \
-  && git submodule init \
-  && git submodule update \
+  && git submodule update --init --recursive \
   && git submodule foreach git config core.filemode false \
   && cd /var/www/MISP/app/files/scripts \
   && git clone https://github.com/CybOXProject/python-cybox.git \
@@ -72,6 +71,8 @@ RUN set -ex \
 
 RUN set -ex \
   && { \
+    echo '#!/bin/sh'; \
+    echo ''; \
     echo '/var/www/MISP/app/Console/cake userInit -q'; \
     echo 'AUTH_KEY=$(mysql -u "$MYSQL_DB_USER" -p"$MYSQL_DB_PASSWORD" -h "$MYSQL_DB_HOST" -P "$MYSQL_DB_PORT" misp -e "SELECT authkey FROM users;" | tail -1)'; \
     echo 'curl --header "Authorization: $AUTH_KEY" --header "Accept: application/json" --header "Content-Type: application/json" -k -X POST http://127.0.0.1/galaxies/update'; \
