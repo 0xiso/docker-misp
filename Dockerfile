@@ -45,7 +45,7 @@ RUN set -ex \
   && cd /var/www/MISP \
   && git config core.filemode false \
   && git submodule update --init --recursive \
-  && git submodule foreach git config core.filemode false \
+  && git submodule foreach --recursive git config core.filemode false \
   && cd /var/www/MISP/app/files/scripts \
   && git clone https://github.com/CybOXProject/python-cybox.git \
   && git clone https://github.com/STIXProject/python-stix.git \
