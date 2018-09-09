@@ -60,6 +60,7 @@ The following environment variables are honored for configuring your MISP instan
 * `MISP_MODULES_HOST` - Defaults to "http://misp-modules"
 * `MISP_MODULES_PORT` - Defaults to "6666"
 * `MISP_LIVE` - Defaults to false, non-empty value will set MISP.live to true
+* `MISP_SCHEDULER_WORKER_ENABLE` - Defaults to disabled, non-empty value will enable scheduler worker
 * `MISP_DISABLE_EMAILING` - Defaults to disabled, non-empty value will set MISP.disable_emailing to true
 * `MISP_ENRICHMENT_ENABLE` - Defaults to disabled, non-empty value will set Plugin.Enrichment_services_enable and Plugin.Enrichment_hover_enable to true
 * `MISP_IMPORT_ENABLE` - Defaults to disabled, non-empty value will set Plugin.Import_services_enable to true

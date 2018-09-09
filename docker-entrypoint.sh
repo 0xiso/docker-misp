@@ -80,6 +80,10 @@ if [ "$MISP_ATTACHMENTS_DIR" ]; then
     set_config "MISP.attachments_dir" "$MISP_ATTACHMENTS_DIR"
 fi
 
+if [ "$MISP_SCHEDULER_WORKER_ENABLE" ]; then
+    sed -i -e "s;'enabled' => false,;'enabled' => true,;" /var/www/MISP/app/Plugin/CakeResque/Config/config.php
+fi
+
 set_config "MISP.redis_host" "$REDIS_HOST"
 set_config "MISP.redis_port" "$REDIS_PORT"
 

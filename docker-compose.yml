@@ -33,6 +33,7 @@ services:
       MISP_EXPORT_ENABLE: 1
       MISP_ZEROMQ_ENABLE: 1
       MISP_ATTACHMENTS_DIR: /misp-attachments
+      MISP_SCHEDULER_WORKER_ENABLE: 1
 
   misp-modules:
     build: ./misp-modules/
