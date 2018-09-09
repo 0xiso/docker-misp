@@ -1,5 +1,14 @@
 #!/bin/bash
 
+: ${MYSQL_DB_HOST:=mysql}
+: ${MYSQL_DB_PORT:=3306}
+: ${MYSQL_DB_USER:=root}
+: ${MYSQL_DB_PASSWORD:=password}
+: ${REDIS_HOST:=redis}
+: ${REDIS_PORT:=6379}
+: ${MISP_MODULES_HOST:=http://misp-modules}
+: ${MISP_MODULES_PORT:=6666}
+
 conf_paths=(
     '/var/www/MISP/app/Config/bootstrap.php'
     '/var/www/MISP/app/Config/config.php'
@@ -47,16 +56,6 @@ if [[ $(mysql -N -s -u "$MYSQL_DB_USER" -p"$MYSQL_DB_PASSWORD" -h "$MYSQL_DB_HOS
     echo 'Initializing table'
     mysql -u "$MYSQL_DB_USER" -p"$MYSQL_DB_PASSWORD" -h "$MYSQL_DB_HOST" -P "$MYSQL_DB_PORT" misp < /var/www/MISP/INSTALL/MYSQL.sql
 fi
-
-
-: ${MYSQL_DB_HOST:=mysql}
-: ${MYSQL_DB_PORT:=3306}
-: ${MYSQL_DB_USER:=root}
-: ${MYSQL_DB_PASSWORD:=password}
-: ${REDIS_HOST:=redis}
-: ${REDIS_PORT:=6379}
-: ${MISP_MODULES_HOST:=http://misp-modules}
-: ${MISP_MODULES_PORT:=6666}
 
 
 set_config() {
