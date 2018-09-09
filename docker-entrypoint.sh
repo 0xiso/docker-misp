@@ -126,4 +126,5 @@ fi
 set_config "Plugin.ZeroMQ_redis_host" "$REDIS_HOST"
 set_config "Plugin.ZeroMQ_redis_port" "$REDIS_PORT"
 
+rm -fr /var/www/MISP/app/files/scripts/mispzmq/mispzmq.pid
 exec /usr/local/bin/circusd /circus.ini
