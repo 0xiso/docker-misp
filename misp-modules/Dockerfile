@@ -6,6 +6,7 @@ RUN set -ex \
   && apt-get install -y --no-install-recommends \
     ca-certificates \
     curl \
+    gcc \
     git \
     libjpeg-dev \
     libpq5 \
