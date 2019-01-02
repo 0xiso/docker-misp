@@ -34,7 +34,25 @@ services:
       MISP_ZEROMQ_ENABLE: 1
       MISP_ATTACHMENTS_DIR: /misp-attachments
       MISP_SCHEDULER_WORKER_ENABLE: 1
+      MISP_FIX_PERMISSION: 1
 
   misp-modules:
     build: ./misp-modules/
     image: 0xiso/misp-modules
+
+  # redis-commander:
+  #   image: rediscommander/redis-commander
+  #   restart: always
+  #   environment:
+  #   - REDIS_HOSTS=local:redis:6379
+  #   ports:
+  #   - "8081:8081"
+
+  # phpmyadmin:
+  #   image: phpmyadmin/phpmyadmin
+  #   environment:
+  #     PMA_HOST: mysql
+  #     PMA_PORT: 3306
+  #   restart: always
+  #   ports:
+  #    - 8082:80
